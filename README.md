@@ -13,6 +13,8 @@ Works with **Ollama** (free, local), **OpenAI**, **Groq**, **DeepSeek** and any 
 - **Provider switching in-app** — Ollama / OpenAI / Groq / DeepSeek / custom endpoint
 - **Keys stay server-side** — the browser posts to an internal API route that forwards to the provider; nothing is stored
 - **Typing indicator, auto-scroll, keyboard send** (Enter sends, Shift+Enter newlines)
+- **Conversation persists** across refreshes (localStorage — nothing leaves your machine)
+- **Copy transcript as markdown** — export a thread with the Copy button
 - **Dark mode** via `prefers-color-scheme`
 
 ## Getting started
@@ -52,6 +54,7 @@ Browser renders each delta into a markdown block as it arrives
 - `src/lib/sse.ts` — chunk-safe incremental SSE parser (handles `\n`, `\r\n`, multi-line `data:`)
 - `src/lib/providers.ts` — provider presets (base URL, default model, key requirements)
 - `src/app/api/chat/route.ts` — streaming proxy that keeps credentials off the client
+- `src/lib/storage.ts` — conversation persistence and markdown transcript export
 
 ## Scripts
 
@@ -61,6 +64,7 @@ Browser renders each delta into a markdown block as it arrives
 | `npm run build` | Production build |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
+| `npm test` | SSE parser tests (node:test) |
 
 ## Deploying
 
